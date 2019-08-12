@@ -1,0 +1,55 @@
+ID: employeemaster
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_db
+  - name: nodejs
+    type: nodejs
+    path: nodejs
+    provides:
+      - name: nodejs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_db
+      - name: db
+  - name: web
+    type: html5
+    path: web
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_employeemaster
+      - name: dest_employeemaster
+      - name: nodejs_api
+        group: destinations
+        properties:
+          name: nodejs-backend
+          url: '~{url}'
+          forwardAuthToken: true
+resources:
+  - name: hdi_db
+    parameters:
+      config:
+        schema: DB
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: uaa_employeemaster
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_employeemaster
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

@@ -1,0 +1,35 @@
+{
+"format_version": 1,
+"imports": [{
+  "target_table": "employee.employee",
+  "source_data": {
+    "data_type": "CSV",
+    "file_name": "employee.csv",
+    "has_header": false,
+    "dialect": "HANA",
+    "type_config": {
+      "delimiter": ","
+    }
+  },
+  "import_settings": {
+    "import_columns": ["EMPLOYEEID",
+    "FIRSTNAME",
+    "LASTNAME",
+    "EMAIL",
+    "CITY",
+    "JOBTITLE",
+    "DEPARTMENT"]
+  },
+  "column_mappings": {
+    "EMPLOYEEID": 1,
+    "FIRSTNAME": 2,
+    "LASTNAME": 3,
+    "EMAIL": 4,
+    "CITY": 5,
+    "JOBTITLE": 6,
+    "DEPARTMENT": 7
+  }
+}
+]
+}
+

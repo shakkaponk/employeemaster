@@ -1,0 +1,21 @@
+{
+	"welcomeFile": "/web/index.html",
+	"authenticationMethod": "route",
+	"logout": {
+		"logoutEndpoint": "/do/logout"
+	},
+	"routes": [{
+		"routes": [{
+			"source": "(.*)(.xsjs)",
+			"destination": "nodejs-backend",
+			"csrfProtection": false,
+			"authenticationType": "none"
+		}, {
+			"source": "/xsodata/employee.xsodata/employee",
+			"destination": "nodejs-backend",
+			"authenticationType": "none"
+
+		}]
+
+	}]
+}
