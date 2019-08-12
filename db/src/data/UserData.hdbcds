@@ -16,6 +16,5 @@ context UserData {
           City     : String(255);
           Jobtitle : String(255);
           Department : String(255);
-         
    };
 };
